@@ -37,16 +37,17 @@ function ExpenseTracker() {
                 Add
             </button>
 
-            <ul>
-
+            <ul style={{ listStyle: "none" }}>
+                {expenses.map((e, i) => (
+                    <li key={i}>
+                        {e.item} - ₹(e.amount)
+                    </li>
+                ))}
             </ul>
 
-
-
+            <h3>Total: ₹(total)</h3>
         </div>
-    )
-
-
+    );
 }
 
 export { ExpenseTracker };
