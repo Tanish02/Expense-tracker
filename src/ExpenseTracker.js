@@ -7,12 +7,22 @@ function ExpenseTracker() {
     const [item, setItem] = useState("");
     const [amount, setAmount] = useState("");
 
+
+    // Add Expense logic
     function handleAdd() {
         if (!item || !amount) return;
         setExpenses([...expenses, { item, amount: parseFloat(amount) }]);
         setItem("");
         setAmount("");
     }
+
+    // Delete Expense logic
+    function handleDelete(index) {
+        setExpenses(expenses.filter((_, i) => i !== index));
+    }
+
+
+    // calculate total expense Logic
 
     const total = expenses.reduce((sum, e) => sum + e.amount, 0);
 
@@ -33,19 +43,23 @@ function ExpenseTracker() {
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
             />
+
             <button onClick={handleAdd}>
                 Add
             </button>
 
-            <ul style={{ listStyle: "none" }}>
+            <ul style={{ listStyle: "none", padding: 0 }}>
                 {expenses.map((e, i) => (
-                    <li key={i}>
-                        {e.item} - ₹{e.amount}
+                    <li key={i} style={{ marginTop: "10px" }}>
+                        {e.item} - ₹{e.amount.toFixed(2)}{""}
+                        <button onClick={() => handleDelete(i)}>
+                            ❌
+                        </button>
                     </li>
                 ))}
             </ul>
 
-            <h3>Total: ₹(total)</h3>
+            <h3>Total: ₹{total.toFixed(2)}</h3>
         </div>
     );
 }
