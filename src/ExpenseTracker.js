@@ -40,7 +40,7 @@ function ExpenseTracker() {
             <ul style={{ listStyle: "none" }}>
                 {expenses.map((e, i) => (
                     <li key={i}>
-                        {e.item} - ₹(e.amount)
+                        {e.item} - ₹{e.amount}
                     </li>
                 ))}
             </ul>
